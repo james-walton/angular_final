@@ -11,6 +11,10 @@ angular.module('angularFinalApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/users', {
+        templateUrl: 'views/users.html',
+        controller: 'UserCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

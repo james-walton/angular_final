@@ -1,0 +1,43 @@
+<div class="btn-group">
+  <button class="btn" ng-click="paneToShow = 'List'">
+		List
+	</button>
+	<button class="btn" ng-click="showAdd()">
+		Add
+	</button>
+	<button class="btn" ng-click="showEdit()">
+		Edit
+	</button>
+</div>
+<div class="hero-unit" ng-show="paneToShow == 'List'">
+	<h3>User List</h3>
+</div>
+<div class="hero-unit" ng-show="paneToShow == 'Edit'">
+	<h3>{{editTitle}}</h3>
+	<form class="form-horizontal">
+		<div class="control-group">
+			<label for="firstName" class="control-label">First</label>
+			<div class="controls">
+				<input type="text" id="firstName" ng-model="firstName">
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="lastName" class="control-label">Last</label>
+			<div class="controls">
+				<input type="text" id="lastName" ng-model="lastName">
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="nickName" class="control-label">Nickname</label>
+			<div class="controls">
+				<input type="text" name="nickName" ng-model="nickName">
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="email" class="control-label">Email</label>
+			<div class="controls">
+				<input type="text" name="email" ng-model="email">
+			</div>
+		</div>
+	</form>
+</div>

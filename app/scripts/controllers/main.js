@@ -7,4 +7,9 @@ angular.module('angularFinalApp')
       'AngularJS',
       'Karma'
     ];
+
+	$scope.visibility = true;
+
+	$scope.effect = 'fade';
+
   });
