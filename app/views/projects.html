@@ -2,18 +2,23 @@
 
 <span class="text-info">{{pageStatus}}</span>
 <div class="hero-unit" ng-show="paneToShow == 'List'">
-	<h3>Projects <button class="btn" ng-click="showAdd()"><i class="icon-plus"></i></button></h3>
+	<h2>{{userName}}</h2>
+	<ul class="nav nav-pills"><li><h3>Projects <a href ng-click="showAdd()"><i class="icon-plus"></i></a></h3></li></ul>
 
 	<div ng-repeat="project in projects | filter:userFilter:true">
-		<span class="span9">{{project.title}} {{project.description}} {{project.status}} {{project.dueDate}}</span>
-		<a class="btn btn-mini" ng-click="showEdit(project._id)"><i class="icon-pencil"></i></a>
+		<span class="span6"><h4>{{project.title}}</h4><span>{{project.description}}</span></span>
+		<span class="span1">{{project.status}}</span>
+		<span class="span2">
+			{{project.dueDate | date:'shortDate'}}
+			<!--<ul class="nav nav-pills"><li><a href ng-click="showEdit(project._id)"><i class="icon-pencil"></i></a></li></ul>-->
+			<button class="btn btn-link" ng-click="showEdit(project._id)"><i class="icon-pencil"></i></button>
+		</span>
 	</div>
 	
-		
 </div>
 
 <div class="hero-unit span3" ng-show="paneToShow == 'Edit'">
-	<h3>{{editTitle}}</h3>
+	<h2>{{editTitle}}</h2>
 
 	<div>
 		<label for="title" class="control-label">Title</label>
@@ -34,7 +39,7 @@
 
 	<div>
 	<div class="btn-group pull-right">
-		<a class="btn" ng-show="pageStatus == ''" ng-click="saveChanges()"><i class="icon-ok"></i></a>
-		<a class="btn" ng-show="pageStatus == ''" ng-click="paneToShow = 'List'"><i class="icon-remove"></i></a>
+		<button class="btn btn-link" ng-show="pageStatus == ''" ng-click="saveChanges()"><i class="icon-ok"></i></button>
+		<button class="btn btn-link" ng-show="pageStatus == ''" ng-click="paneToShow = 'List'"><i class="icon-remove"></i></button>
 	</div>
 </div>

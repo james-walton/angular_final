@@ -105,6 +105,14 @@ angular.module('angularFinalApp')
       }
     }
 
+	$http({
+          method: 'GET',
+          url: 'http://geekwise-angularjs.herokuapp.com/js3/users/' + $scope.userId
+      }).success(function(data, status, headers, config){
+              $scope.userName = data[0].firstName + ' ' + ((data[0].nickName != '') && '"' + data[0].nickName + '" ' || '') + data[0].lastName;
+      }).error(function(data, status, headers, config){
+              console.warn("GET users failed....");
+      })
 
 
 	$http({

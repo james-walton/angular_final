@@ -2,14 +2,14 @@
 
 <span class="text-info">{{pageStatus}}</span>
 <div class="hero-unit" ng-show="paneToShow == 'List'">
-	<h3>Users <button class="btn" ng-click="showAdd()"><i class="icon-plus"></i></button></h3>
+	<h2>Users <button class="btn btn-link" ng-click="showAdd()"><i class="icon-plus"></i></button></h2>
 
 	<div ng-repeat="user in users">
-		<a href="#/users/{{user._id}}/projects"><span class="span9">{{user.firstName}} {{ (user.nickName != '') && '"' + user.nickName + '"' || ''}} {{user.lastName}}</span></a>
-		<a class="btn btn-mini" href="mailto:{{user.email}}"><i class="icon-envelope"></i></a>
+		<a href="#/users/{{user._id}}/projects"><span class="span8">{{user.firstName}} {{ (user.nickName != '') && '"' + user.nickName + '"' || ''}} {{user.lastName}}</span></a>
+		<button class="btn btn-link" href="mailto:{{user.email}}"><i class="icon-envelope"></i></button>
 		<div class="btn-group">
-			<a class="btn btn-mini" ng-click="showEdit(user._id)"><i class="icon-pencil"></i></a>
-			<a class="btn btn-mini" ng-click="deleteUser(user._id, user.firstName)"><i class="icon-remove"></i></a>
+			<button class="btn btn-link" ng-click="showEdit(user._id)"><i class="icon-pencil"></i></button>
+			<button class="btn btn-link" ng-click="deleteUser(user._id, user.firstName)"><i class="icon-remove"></i></button>
 		</div>
 	</div>
 	
@@ -17,7 +17,7 @@
 </div>
 
 <div class="hero-unit span3" ng-show="paneToShow == 'Edit'">
-	<h3>{{editTitle}}</h3>
+	<h2>{{editTitle}}</h2>
 
 	<div>
 		<label for="firstName" class="control-label">First</label>
@@ -33,7 +33,7 @@
 		<input type="text" name="email" ng-model="email">
 	<div>
 	<div class="btn-group pull-right">
-		<a class="btn" ng-show="pageStatus == ''" ng-click="saveChanges()"><i class="icon-ok"></i></a>
-		<a class="btn" ng-show="pageStatus == ''" ng-click="paneToShow = 'List'"><i class="icon-remove"></i></a>
+		<button class="btn btn-link" ng-show="pageStatus == ''" ng-click="saveChanges()"><i class="icon-ok"></i></button>
+		<button class="btn btn-link" ng-show="pageStatus == ''" ng-click="paneToShow = 'List'"><i class="icon-remove"></i></button>
 	</div>
 </div>
