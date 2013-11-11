@@ -5,7 +5,7 @@
 	<h3>Users <button class="btn" ng-click="showAdd()"><i class="icon-plus"></i></button></h3>
 
 	<div ng-repeat="user in users">
-		<span class="span9">{{user.firstName}} {{ (user.nickName != '') && '"' + user.nickName + '"' || ''}} {{user.lastName}}</span>
+		<a href="#/users/{{user._id}}/projects"><span class="span9">{{user.firstName}} {{ (user.nickName != '') && '"' + user.nickName + '"' || ''}} {{user.lastName}}</span></a>
 		<a class="btn btn-mini" href="mailto:{{user.email}}"><i class="icon-envelope"></i></a>
 		<div class="btn-group">
 			<a class="btn btn-mini" ng-click="showEdit(user._id)"><i class="icon-pencil"></i></a>

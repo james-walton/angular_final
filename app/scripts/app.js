@@ -3,7 +3,8 @@
 angular.module('angularFinalApp', [
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -14,6 +15,10 @@ angular.module('angularFinalApp', [
       .when('/users', {
         templateUrl: 'views/users.html',
         controller: 'UserCtrl'
+      })
+      .when('/users/:userId/projects', {
+        templateUrl: 'views/projects.html',
+        controller: 'PrjCntl'
       })
       .otherwise({
         redirectTo: '/'
