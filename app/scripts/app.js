@@ -8,10 +8,6 @@ angular.module('angularFinalApp', [
 ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .when('/users', {
         templateUrl: 'views/users.html',
         controller: 'UserCtrl'
@@ -20,7 +16,15 @@ angular.module('angularFinalApp', [
         templateUrl: 'views/projects.html',
         controller: 'PrjCntl'
       })
+      .when('/projects/:projectId/conversations', {
+        templateUrl: 'views/conversations.html',
+        controller: 'ConvCntl'
+      })
+      .when('/projects/:projectId/conversations', {
+        templateUrl: 'views/conversations.html',
+        controller: 'ConvCntl'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/users'
       });
   });

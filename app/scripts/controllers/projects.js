@@ -4,9 +4,9 @@ angular.module('angularFinalApp')
   .controller('PrjCntl', function ($scope, $http, $window, $routeParams ) {
     $scope.pageStatus = '';
     $scope.projects = {};
-	$scope.userId = $routeParams.userId;
-	$scope.userFilter = {team:[$scope.userId]};
-	$scope.team = [];
+  	$scope.userId = $routeParams.userId;
+  	$scope.userFilter = {team:[$scope.userId]};
+  	$scope.team = [];
 
 	$scope.showProjectList = function () {
       $scope.pageStatus = 'Loading...';
@@ -101,6 +101,21 @@ angular.module('angularFinalApp')
                 $scope.showProjectList();
         }).error(function(data, status, headers, config){
                 console.warn("Save Failed....");
+        })
+      }
+    }
+
+    $scope.deleteProject = function (id, title) {
+      console.log(id);
+      if ($window.confirm("Are you sure you want to DELETE '" + title + "?'")){
+        $http({
+            method: 'DELETE',
+            url: 'http://geekwise-angularjs.herokuapp.com/js3/projects/' + id
+        }).success(function(data, status, headers, config){
+                console.log ("Deleted",data);
+                $scope.showProjectList();
+        }).error(function(data, status, headers, config){
+                console.warn("Couldn't reach the data....");
         })
       }
     }

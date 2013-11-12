@@ -6,12 +6,14 @@
 	<ul class="nav nav-pills"><li><h3>Projects <a href ng-click="showAdd()"><i class="icon-plus"></i></a></h3></li></ul>
 
 	<div ng-repeat="project in projects | filter:userFilter:true">
-		<span class="span6"><h4>{{project.title}}</h4><span>{{project.description}}</span></span>
-		<span class="span1">{{project.status}}</span>
+		<dl class="span7"><dt><a href="#/projects/{{project._id}}/conversations">{{project.title}}</a></dt><dd>{{project.description}}</dd></dl>
+		<span class="span1"><code>{{project.status}}</code></span>
 		<span class="span2">
 			{{project.dueDate | date:'shortDate'}}
-			<!--<ul class="nav nav-pills"><li><a href ng-click="showEdit(project._id)"><i class="icon-pencil"></i></a></li></ul>-->
-			<button class="btn btn-link" ng-click="showEdit(project._id)"><i class="icon-pencil"></i></button>
+			<div class="btn-group">
+				<button class="btn btn-link" ng-click="showEdit(project._id)"><i class="icon-pencil"></i></button>
+				<button class="btn btn-link" ng-click="deleteProject(project._id, project.title)"><i class="icon-remove"></i></button>
+			</div>
 		</span>
 	</div>
 	
@@ -31,11 +33,10 @@
 		<input type="text" name="status" ng-model="status">
 
 		<label for="dueDate" class="control-label">Due Date</label>
-		<input type="text" name="dueDate" ng-model="dueDate">
-		<!--<datepicker ng-model="dueDate"></datepicker>-->
+		<input type="text" name="dueDate" ng-model="dueDate" datepicker-popup="shortDate" is-open="true">
 
 		<label for="team" class="control-label">Team</label>
-		<select multiple ng-multipl="true" name="team" ng-model="team" ng-options="user._id as user.firstName for user in users"></select>
+		<select multiple ng-multiple="true" name="team" ng-model="team" ng-options="user._id as (user.nickName || user.firstName) for user in users"></select>
 
 	<div>
 	<div class="btn-group pull-right">
