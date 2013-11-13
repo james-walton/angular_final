@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('angularFinalApp')
-  .controller('PrjCntl', function ($scope, $http, $window, $routeParams ) {
+  .controller('PrjCntl', function ($scope, $http, $window, $routeParams, $rootScope ) {
     $scope.pageStatus = '';
     $scope.projects = {};
-  	$scope.userId = $routeParams.userId;
-  	$scope.userFilter = {team:[$scope.userId]};
+  	$scope.userFilter = {team:[$routeParams.userId]};
   	$scope.team = [];
 
 	$scope.showProjectList = function () {
@@ -122,11 +121,12 @@ angular.module('angularFinalApp')
 
 	$http({
           method: 'GET',
-          url: 'http://geekwise-angularjs.herokuapp.com/js3/users/' + $scope.userId
+          url: 'http://geekwise-angularjs.herokuapp.com/js3/users/' + $routeParams.userId
       }).success(function(data, status, headers, config){
+              $rootScope.selectedUser = data[0];
               $scope.userName = data[0].firstName + ' ' + ((data[0].nickName != '') && '"' + data[0].nickName + '" ' || '') + data[0].lastName;
       }).error(function(data, status, headers, config){
-              console.warn("GET users failed....");
+              console.warn("GET user failed....");
       })
 
 

@@ -4,8 +4,13 @@
 	<ul class="nav nav-pills"><li><h3>Conversations <a href ng-click="showAdd()"><i class="icon-plus"></i></a></h3></li></ul>
 
 	<div ng-repeat="conv in project.conversations">
-		<span class="span9"><a href ng-click="showConv(conv._id)">{{conv.subject}}</a></span>
-		<span class="span1"><button class="btn btn-link" ng-click="showEdit(conv._id, conv.subject)"><i class="icon-pencil"></i></button></span>
+		<span class="span8"><a href ng-click="showConv(conv._id)">{{conv.subject}}</a></span>
+		<span class="span2">
+			<div class="btn-group">
+				<button class="btn btn-link" ng-click="showEdit(conv._id, conv.subject)"><i class="icon-pencil"></i></button>
+				<button class="btn btn-link" ng-click="deleteConv(conv._id, conv.subject)"><i class="icon-remove"></i></button>
+			</div>
+		</span>
 	</div>
 	
 </div>
@@ -28,7 +33,9 @@
 	<h2>{{selectedConv.subject}}</h2>
 	<table class="table">
 		<tr ng-repeat="msg in selectedConv.messages">
-			<td class="span8">{{msg.message}}</td><td class="span2">{{msg.user.nickName || msg.user.firstName}} - {{msg.modified | date:"shortDate"}}</td>
+			<td class="span7">{{msg.message}}</td>
+			<td class="span3">{{msg.user.nickName || msg.user.firstName}} - {{msg.modified | date:"shortDate"}}</td>
+			<td class-"span1"><button class="btn btn-link" ng-show="msg.user._id == selectedUser._id" ng-click="showEditMsg(msg._id, msg.message)"><i class="icon-pencil"></i></button></td>
 		</tr>
 	</table>
 	<div>
@@ -42,3 +49,13 @@
 	</div>
 </div>
 
+<div class="hero-unit span3" ng-show="paneToShow == 'EditMsg'">
+	<div class="span7">
+		<input type="text" id="message" ng-model="message">
+	</div>
+
+	<div class="btn-group pull-right span2">
+		<button class="btn btn-link" ng-show="pageStatus == ''" ng-click="saveMsgChanges()"><i class="icon-ok"></i></button>
+		<button class="btn btn-link" ng-show="pageStatus == ''" ng-click="paneToShow = 'View'"><i class="icon-remove"></i></button>
+	</div>
+</div>
