@@ -35,7 +35,7 @@
 		<tr ng-repeat="msg in selectedConv.messages">
 			<td class="span7">{{msg.message}}</td>
 			<td class="span3">{{msg.user.nickName || msg.user.firstName}} - {{msg.modified | date:"shortDate"}}</td>
-			<td class-"span1"><button class="btn btn-link" ng-show="msg.user._id == selectedUser._id" ng-click="showEditMsg(msg._id, msg.message)"><i class="icon-pencil"></i></button></td>
+			<td class-"span1"><button class="btn btn-link" ng-show="msg.user._id == selectedUserId" ng-click="showEditMsg(msg._id, msg.message)"><i class="icon-pencil"></i></button></td>
 		</tr>
 	</table>
 	<div>

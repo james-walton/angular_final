@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('angularFinalApp')
-  .controller('ConvCntl', function ($scope, $http, $window, $routeParams, $rootScope ) {
+  .controller('ConvCntl', function ($scope, $http, $window, $routeParams, SelectedUser ) {
  		$scope.project = [];
     $scope.pageStatus = '';
 		$scope.projectId = $routeParams.projectId;
+    $scope.selectedUserId = SelectedUser.userObject()._id;
+    
 
 	$scope.showConvList = function () {
       $scope.pageStatus = 'Loading...';
@@ -103,7 +105,7 @@ angular.module('angularFinalApp')
           url: 'http://geekwise-angularjs.herokuapp.com/js3/projects/' + $scope.projectId + '/conversations/' + $scope.selectedConv._id + '/messages',
           data: {
             message: $scope.newMessage,
-            user: $rootScope.selectedUser._id
+            user: $scope.selectedUserId
           }
         }).success(function(data, status, headers, config){
           console.log ('Saved',data);
@@ -141,7 +143,7 @@ angular.module('angularFinalApp')
             url: 'http://geekwise-angularjs.herokuapp.com/js3/messages/' + $scope.msgId ,
             data: {
               message: $scope.message,
-              user: $rootScope.selectedUser._id
+              user: $scope.selectedUserId
             }
         }).success(function(data, status, headers, config){
           console.log ('Saved',data);
